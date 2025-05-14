@@ -3,9 +3,9 @@
 #include <string>
 using namespace std;
 
-// Fungsi untuk menghitung Faktorial secara efisien
+
 unsigned long long faktorial(int n, bool& overflow) {
-    if (n > 20) { // Faktorial lebih besar dari 20 sudah overflow
+    if (n > 20) {
         overflow = true;
         return 0;
     }
@@ -13,7 +13,7 @@ unsigned long long faktorial(int n, bool& overflow) {
     unsigned long long hasil = 1;
     for (int i = 1; i <= n; ++i) {
         hasil *= i;
-        if (hasil > 1e18) { // Cek overflow secara manual
+        if (hasil > 1e18) { 
             overflow = true;
             return 0;
         }
@@ -21,15 +21,14 @@ unsigned long long faktorial(int n, bool& overflow) {
     return hasil;
 }
 
-// Fungsi untuk menghitung Kombinasi C(n, r) dengan pembatalan faktor
 unsigned long long kombinasi(int n, int r, bool& overflow) {
     if (r > n) return 0;
-    r = min(r, n - r); // Menjaga r tetap kecil untuk optimisasi
+    r = min(r, n - r); 
     unsigned long long hasil = 1;
 
     for (int i = 0; i < r; ++i) {
         hasil *= (n - i);
-        if (hasil > 1e18) { // Cek overflow
+        if (hasil > 1e18) { 
             overflow = true;
             return 0;
         }
@@ -38,14 +37,13 @@ unsigned long long kombinasi(int n, int r, bool& overflow) {
     return hasil;
 }
 
-// Fungsi untuk menghitung Permutasi P(n, r) dengan pembatalan faktor
 unsigned long long permutasi(int n, int r, bool& overflow) {
     if (r > n) return 0;
     unsigned long long hasil = 1;
 
     for (int i = 0; i < r; ++i) {
         hasil *= (n - i);
-        if (hasil > 1e18) { // Cek overflow
+        if (hasil > 1e18) { 
             overflow = true;
             return 0;
         }
@@ -53,14 +51,12 @@ unsigned long long permutasi(int n, int r, bool& overflow) {
     return hasil;
 }
 
-// Fungsi untuk menampilkan peringatan jika nilai terlalu besar
 void tampilkanPeringatan(const string& jenis, const string& objek, int total, int pilih) {
     cout << "\n PERINGATAN !\n";
     cout << "Perhitungan " << jenis << " untuk " << objek << " menghasilkan nilai yang terlalu besar untuk dihitung.\n";
     cout << "Karena keterbatasan sistem yang dibuat(Lebih dari Tipe Data).\n";
     cout << "Mungkin angka yang diinputkan bisa diganti ke angka yang lebih kecil.\n";
 
-    // Penjelasan sesuai jenis perhitungan
     if (jenis == "Faktorial") {
         cout << "Artinya, kamu sedang mencoba menghitung " << total << "! (faktorial dari " << total << "),\n";
         cout << "yang merupakan jumlah cara menyusun " << total << " objek dalam urutan tertentu.\n";
@@ -74,7 +70,6 @@ void tampilkanPeringatan(const string& jenis, const string& objek, int total, in
     cout << "Pertimbangkan untuk menggunakan angka yang lebih kecil agar hasilnya tidak melebihi kapasitas tipe data.\n\n";
 }
 
-// Fungsi untuk menampilkan penjelasan penggunaan
 void caraPenggunaan() {
     int pilihanPenjelasan;
     cout << "Pilih bagian yang ingin dijelaskan:\n";
@@ -88,7 +83,6 @@ void caraPenggunaan() {
     cout << "Contoh: Jika ada 50 siswa dan kita ingin memilih 4 siswa untuk tim, berapa banyak cara kita bisa memilihnya?\n";
     cout << "Ini dihitung menggunakan rumus kombinasi C(50, 4) = 50! / (4! * (50 - 4)!)\n";
     
-    // Studi Kasus
     cout << "\nContoh Studi Kasusnya:\n";
     cout << "Misalkan kita memiliki 50 siswa dan kita ingin memilih 4 siswa untuk membentuk tim.\n";
     cout << "Dalam hal ini, urutan pemilihan tidak penting, hanya berapa banyak siswa yang dipilih.\n";
@@ -102,7 +96,6 @@ case 2:
     cout << "Contoh: Jika ada 5 pemain dan kita ingin memilih 3 pemain untuk berlomba, dengan memperhatikan urutan, berapa banyak cara kita bisa memilihnya?\n";
     cout << "Ini dihitung menggunakan rumus permutasi P(5, 3) = 5! / (5 - 3)!\n";
 
-    // Studi Kasus
     cout << "\nContoh Studi Kasusnya:\n";
     cout << "Misalkan ada 5 pemain yang ingin dipilih untuk berlomba dan kita perlu memilih 3 pemain untuk berlomba.\n";
     cout << "Urutan pemilihan penting, karena kita mungkin memilih pemain untuk posisi tertentu (misalnya: posisi pertama, kedua, dan ketiga).\n";
@@ -115,7 +108,6 @@ case 3:
     cout << "Faktorial digunakan untuk menghitung jumlah cara untuk menyusun 'n' objek dalam urutan tertentu.\n";
     cout << "Contoh: Jika ada 6 buku, berapa banyak cara untuk menyusunnya di rak? Ini dihitung menggunakan rumus faktorial 6! = 6 * 5 * 4 * 3 * 2 * 1\n";
 
-    // Studi Kasus
     cout << "\nContoh Studi Kasusnya:\n";
     cout << "Misalkan kita memiliki 6 buku dan kita ingin mengetahui berapa banyak cara kita bisa menyusunnya di rak.\n";
     cout << "Karena urutan penyusunan buku sangat penting (posisi pertama, kedua, ketiga, dll.), kita menggunakan faktorial untuk menghitung jumlah cara menyusunnya.\n";
@@ -137,7 +129,6 @@ int main() {
     int total, pilih, jenisPerhitungan;
     bool overflow = false;
 
-    // Menu utama
     int pilihanMenu;
     do {
         cout << "=== Kalkulator Kombinatorial ===\n";
@@ -149,13 +140,11 @@ int main() {
         cin >> pilihanMenu;
 
         if (pilihanMenu == 1) {
-            // Pilih jenis perhitungan
             cout << "\nPilih jenis perhitungan yang ingin dilakukan:\n";
             cout << "1. Kombinasi (C)\n2. Permutasi (P)\n3. Faktorial (n!)\nPilih Fungsi: ";
             cin >> jenisPerhitungan;
 
             if (jenisPerhitungan == 1) {
-                // Kombinasi
                 cout << "Apa nama objek yang mau kamu dihitung?: ";
                 cin >> objek;
 
@@ -165,7 +154,6 @@ int main() {
                 cout << "Berapa " << objek << " yang ingin dipilih? ";
                 cin >> pilih;
 
-                // Perhitungan Kombinasi
                 unsigned long long hasilKombinasi = kombinasi(total, pilih, overflow);
                 if (overflow) {
                     tampilkanPeringatan("Kombinasi", objek, total, pilih);
@@ -175,7 +163,6 @@ int main() {
                          << " cara untuk memilih " << pilih << " " << objek << " tanpa memperhatikan urutan.\n";
                 }
             } else if (jenisPerhitungan == 2) {
-                // Permutasi
                 cout << "Apa nama objek yang mau kamu dihitung?: ";
                 cin >> objek;
 
@@ -185,7 +172,6 @@ int main() {
                 cout << "Berapa " << objek << " yang ingin dipilih? ";
                 cin >> pilih;
 
-                // Perhitungan Permutasi
                 unsigned long long hasilPermutasi = permutasi(total, pilih, overflow);
                 if (overflow) {
                     tampilkanPeringatan("Permutasi", objek, total, pilih);
@@ -195,14 +181,12 @@ int main() {
                          << " cara untuk memilih " << pilih << " " << objek << " dengan memperhatikan urutan.\n";
                 }
             } else if (jenisPerhitungan == 3) {
-                // Faktorial
                 cout << "Apa nama objek yang mau kamu dihitung?: ";
                 cin >> objek;
 
                 cout << "Berapa jumlah total " << objek << "? ";
                 cin >> total;
 
-                // Perhitungan Faktorial
                 unsigned long long hasilFaktorial = faktorial(total, overflow);
                 if (overflow) {
                     tampilkanPeringatan("Faktorial", objek, total, pilih);  // Peringatan untuk faktorial
@@ -215,7 +199,6 @@ int main() {
                 cout << "Pilihan tidak valid.\n";
             }
         } else if (pilihanMenu == 2) {
-            // Menampilkan penjelasan cara penggunaan
             caraPenggunaan();
         } else if (pilihanMenu == 3) {
             cout << "Terima kasih! Sarannya dong banh.\n";
