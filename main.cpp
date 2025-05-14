@@ -3,17 +3,9 @@
 #include <string>
 using namespace std;
 
-<<<<<<< HEAD
 
 unsigned long long faktorial(int n, bool& overflow) {
     if (n > 20) {
-=======
-// Fungsi untuk menghitung Faktorial secara efisien
-unsigned long long faktorial(int n, bool &overflow)
-{
-    if (n > 20)
-    { // Faktorial lebih besar dari 20 sudah overflow
->>>>>>> 5f07d7c3111b97fda2cb4e9bd0bfb493a94df825
         overflow = true;
         return 0;
     }
@@ -22,12 +14,7 @@ unsigned long long faktorial(int n, bool &overflow)
     for (int i = 1; i <= n; ++i)
     {
         hasil *= i;
-<<<<<<< HEAD
         if (hasil > 1e18) { 
-=======
-        if (hasil > 1e18)
-        { // Cek overflow secara manual
->>>>>>> 5f07d7c3111b97fda2cb4e9bd0bfb493a94df825
             overflow = true;
             return 0;
         }
@@ -35,29 +22,15 @@ unsigned long long faktorial(int n, bool &overflow)
     return hasil;
 }
 
-<<<<<<< HEAD
 unsigned long long kombinasi(int n, int r, bool& overflow) {
     if (r > n) return 0;
     r = min(r, n - r); 
-=======
-// Fungsi untuk menghitung Kombinasi C(n, r) dengan pembatalan faktor
-unsigned long long kombinasi(int n, int r, bool &overflow)
-{
-    if (r > n)
-        return 0;
-    r = min(r, n - r); // Menjaga r tetap kecil untuk optimisasi
->>>>>>> 5f07d7c3111b97fda2cb4e9bd0bfb493a94df825
     unsigned long long hasil = 1;
 
     for (int i = 0; i < r; ++i)
     {
         hasil *= (n - i);
-<<<<<<< HEAD
         if (hasil > 1e18) { 
-=======
-        if (hasil > 1e18)
-        { // Cek overflow
->>>>>>> 5f07d7c3111b97fda2cb4e9bd0bfb493a94df825
             overflow = true;
             return 0;
         }
